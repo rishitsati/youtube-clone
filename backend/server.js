@@ -1,4 +1,4 @@
-app.use(express.static("public"));
+
 import commentRoutes from "./routes/commentRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
 import channelRoutes from "./routes/channelRoutes.js";
@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const app = express();
+app.use(express.static("public"));
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
