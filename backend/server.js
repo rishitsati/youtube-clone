@@ -32,10 +32,6 @@ mongoose
 app.get("/", (req, res) => {
   res.send("YouTube Clone API is running");
 });
-app.get("/*", (req, res) => {
-  res.send("YouTube Clone API is running");
-});
-
 // Start server
 const PORT = process.env.PORT || 8000;
 
