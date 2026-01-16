@@ -19,6 +19,10 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    duration: {
+      type: Number,
+      default: 0, // in seconds
+    },
     channel: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Channel",
@@ -33,6 +37,21 @@ const videoSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    // Track users who liked
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    // Track users who disliked
+    dislikedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    // Track who watched (for accurate like count)
     likes: {
       type: Number,
       default: 0,
@@ -45,6 +64,7 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    tags: [String],
   },
   { timestamps: true }
 );

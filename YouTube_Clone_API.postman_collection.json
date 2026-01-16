@@ -1,0 +1,1044 @@
+{
+  "info": {
+    "name": "YouTube Clone API",
+    "description": "Complete API collection for YouTube Clone project",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/register",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/login",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/me",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newusername\",\n  \"bio\": \"I love gaming!\",\n  \"avatar\": \"https://example.com/avatar.jpg\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/profile",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\",\n  \"confirmPassword\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/password",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "password"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/auth/account",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "account"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Videos",
+      "item": [
+        {
+          "name": "Get All Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos?category=Gaming&sortBy=newest",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Gaming"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "newest"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Video by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/VIDEO_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "VIDEO_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Video",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "My Amazing Video",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "This is an amazing video",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "Gaming",
+                  "type": "text"
+                },
+                {
+                  "key": "channelId",
+                  "value": "CHANNEL_ID",
+                  "type": "text"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"gaming\", \"tutorial\"]",
+                  "type": "text"
+                },
+                {
+                  "key": "video",
+                  "type": "file",
+                  "src": "path/to/video.mp4"
+                },
+                {
+                  "key": "thumbnail",
+                  "type": "file",
+                  "src": "path/to/thumbnail.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Like Video",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/VIDEO_ID/like",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "VIDEO_ID",
+                "like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unlike Video",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/VIDEO_ID/unlike",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "VIDEO_ID",
+                "unlike"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Dislike Video",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/VIDEO_ID/dislike",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "VIDEO_ID",
+                "dislike"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Watch History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/watch-history",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "watch-history"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Track Video Watch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"secondsWatched\": 120,\n  \"totalDuration\": 300\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/VIDEO_ID/watch",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "VIDEO_ID",
+                "watch"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Video Suggestions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/videos/suggest/gaming",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "videos",
+                "suggest",
+                "gaming"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Channels",
+      "item": [
+        {
+          "name": "Create Channel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelName\": \"My Gaming Channel\",\n  \"description\": \"I upload gaming videos\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Channel",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Channel Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID/videos",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID",
+                "videos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Subscribe Channel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID/subscribe",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID",
+                "subscribe"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unsubscribe Channel",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID/subscribe",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID",
+                "subscribe"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Channel Subscribers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID/subscribers",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID",
+                "subscribers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Subscription",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/CHANNEL_ID/is-subscribed",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "CHANNEL_ID",
+                "is-subscribed"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get My Channels",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/channels/user/my-channels",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "channels",
+                "user",
+                "my-channels"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Get Video Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/comments/VIDEO_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "comments",
+                "VIDEO_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Great video!\",\n  \"video\": \"VIDEO_ID\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/comments",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "comments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Like Comment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/comments/COMMENT_ID/like",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "comments",
+                "COMMENT_ID",
+                "like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unlike Comment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/comments/COMMENT_ID/unlike",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "comments",
+                "COMMENT_ID",
+                "unlike"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/comments/COMMENT_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "comments",
+                "COMMENT_ID"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Playlists",
+      "item": [
+        {
+          "name": "Create Playlist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My Favorite Videos\",\n  \"description\": \"Videos I love\",\n  \"isPublic\": true\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get My Playlists",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/user/my-playlists",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "user",
+                "my-playlists"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Playlist",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/PLAYLIST_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "PLAYLIST_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Playlist",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Playlist Name\",\n  \"description\": \"Updated description\",\n  \"isPublic\": false\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/PLAYLIST_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "PLAYLIST_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Playlist",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/PLAYLIST_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "PLAYLIST_ID"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Video to Playlist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"videoId\": \"VIDEO_ID\"\n}"
+            },
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/PLAYLIST_ID/videos",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "PLAYLIST_ID",
+                "videos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove Video from Playlist",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_TOKEN_HERE"
+              }
+            ],
+            "url": {
+              "raw": "https://youtube-clone-backend-co6r.onrender.com/api/playlists/PLAYLIST_ID/videos/VIDEO_ID",
+              "protocol": "https",
+              "host": [
+                "youtube-clone-backend-co6r",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "playlists",
+                "PLAYLIST_ID",
+                "videos",
+                "VIDEO_ID"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

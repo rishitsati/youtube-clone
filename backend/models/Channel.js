@@ -20,6 +20,18 @@ const channelSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    channelAvatar: {
+      type: String,
+      default: "",
+    },
+    // Track actual subscribers (users) instead of just count
+    subscribersList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    // Denormalized count for quick access
     subscribers: {
       type: Number,
       default: 0,

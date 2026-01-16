@@ -20,10 +20,56 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    bio: {
+      type: String,
+      default: "",
+    },
     channels: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Channel",
+      },
+    ],
+    // Track subscribed channels
+    subscriptions: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Channel",
+      },
+    ],
+    // Track liked videos
+    likedVideos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+      },
+    ],
+    // Track disliked videos
+    dislikedVideos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+      },
+    ],
+    // Track watch history
+    watchHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "WatchHistory",
+      },
+    ],
+    // Track liked comments
+    likedComments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    // Track playlists
+    playlists: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Playlist",
       },
     ],
   },
