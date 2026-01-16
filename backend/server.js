@@ -30,16 +30,15 @@ mongoose
 
 // Test Route
 app.get("/", (req, res) => {
-  res.send("YouTube Clone API is running 🚀");
+  res.send("YouTube Clone API is running");
+});
+app.get("/*", (req, res) => {
+  res.send("YouTube Clone API is running");
 });
 
 // Start server
 const PORT = process.env.PORT || 8000;
-if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.send("API running");
-  });
-}
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
