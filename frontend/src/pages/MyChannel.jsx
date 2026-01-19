@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import { getUserChannels, updateChannel } from "../services/api";
-import { FiEdit2, FiSave, FiX } from "react-icons/fi";
+import { getUserChannels, updateChannel } from "@/api/api";
+import { Edit, FileX, Save } from "lucide-react";
 
 function MyChannel({ toggleDarkMode, darkMode }) {
   const [channels, setChannels] = useState([]);
@@ -63,12 +61,12 @@ function MyChannel({ toggleDarkMode, darkMode }) {
     try {
       await updateChannel(editingChannel, formData, token);
       setSuccess("Channel updated successfully!");
-      
+
       // Update local state
       setChannels((prev) =>
         prev.map((ch) =>
-          ch._id === editingChannel ? { ...ch, ...formData } : ch
-        )
+          ch._id === editingChannel ? { ...ch, ...formData } : ch,
+        ),
       );
 
       setEditingChannel(null);
@@ -86,7 +84,6 @@ function MyChannel({ toggleDarkMode, darkMode }) {
   if (loading) {
     return (
       <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-        <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         <div className="flex justify-center items-center h-screen">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
         </div>
@@ -96,11 +93,7 @@ function MyChannel({ toggleDarkMode, darkMode }) {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
         <div
           className={`flex-1 transition-all duration-300 ${
             sidebarOpen ? "ml-64" : "ml-[72px]"
@@ -233,14 +226,14 @@ function MyChannel({ toggleDarkMode, darkMode }) {
                                 onClick={handleSave}
                                 className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold"
                               >
-                                <FiSave size={18} />
+                                <Save size={18} />
                                 Save Changes
                               </button>
                               <button
                                 onClick={handleCancel}
                                 className="flex items-center gap-2 px-4 py-2 bg-gray-400 hover:bg-gray-500 rounded-lg text-white font-semibold"
                               >
-                                <FiX size={18} />
+                                <FileX size={18} />
                                 Cancel
                               </button>
                             </div>
@@ -278,7 +271,7 @@ function MyChannel({ toggleDarkMode, darkMode }) {
                                 onClick={() => handleEditClick(channel)}
                                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold"
                               >
-                                <FiEdit2 size={18} />
+                                <Edit size={18} />
                                 Edit Channel
                               </button>
                               <button

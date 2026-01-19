@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import { getPlaylist, addVideoToPlaylist, removeVideoFromPlaylist } from "../services/api";
+import { getPlaylist, removeVideoFromPlaylist } from "@/api/api";
 
-function PlaylistDetail({ toggleDarkMode, darkMode }) {
+function PlaylistDetail() {
   const { id } = useParams();
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -45,7 +43,6 @@ function PlaylistDetail({ toggleDarkMode, darkMode }) {
   if (loading) {
     return (
       <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-        <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         <div className="flex justify-center items-center h-screen">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
         </div>
@@ -56,7 +53,6 @@ function PlaylistDetail({ toggleDarkMode, darkMode }) {
   if (!playlist) {
     return (
       <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-        <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         <div className="flex justify-center items-center h-screen">
           <p>Playlist not found</p>
         </div>
@@ -66,11 +62,7 @@ function PlaylistDetail({ toggleDarkMode, darkMode }) {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
         <div
           className={`flex-1 transition-all duration-300 ${
             sidebarOpen ? "ml-64" : "ml-[72px]"

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import api, { createVideo, getUserChannels } from "../services/api";
-import { useEffect } from "react";
+import api, { getUserChannels } from "@/api/api";
+import React, { useEffect } from "react";
 
 function Upload() {
   const navigate = useNavigate();
@@ -79,7 +77,12 @@ function Upload() {
     setError("");
     setSuccess("");
 
-    if (!formData.title || !formData.channelId || !files.video || !files.thumbnail) {
+    if (
+      !formData.title ||
+      !formData.channelId ||
+      !files.video ||
+      !files.thumbnail
+    ) {
       setError("Please fill all required fields");
       return;
     }
@@ -97,7 +100,10 @@ function Upload() {
       formDataToSend.append("category", formData.category);
       formDataToSend.append("channelId", formData.channelId);
       if (formData.tags) {
-        formDataToSend.append("tags", formData.tags.split(",").map((t) => t.trim()));
+        formDataToSend.append(
+          "tags",
+          formData.tags.split(",").map((t) => t.trim()),
+        );
       }
 
       // Add files
@@ -111,7 +117,7 @@ function Upload() {
         },
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
+            (progressEvent.loaded * 100) / progressEvent.total,
           );
           setUploadProgress(percentCompleted);
         },
@@ -132,10 +138,7 @@ function Upload() {
 
   return (
     <div className="bg-white dark:bg-black min-h-screen">
-      <Header />
       <div className="flex pt-14">
-        <Sidebar isOpen={true} />
-
         <main className="ml-64 flex-1 p-8 max-w-2xl">
           <h1 className="text-3xl font-bold text-black dark:text-white mb-8">
             Upload Video
@@ -231,7 +234,9 @@ function Upload() {
                 />
                 <label htmlFor="thumbnail-input" className="cursor-pointer">
                   <p className="text-black dark:text-white font-medium">
-                    {files.thumbnail ? files.thumbnail.name : "Click to select thumbnail"}
+                    {files.thumbnail
+                      ? files.thumbnail.name
+                      : "Click to select thumbnail"}
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     or drag and drop

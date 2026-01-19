@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "YouTube Clone API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login API"
+    },
+    {
+      "name": "Get Videos API"
+    },
+    {
+      "name": "Upload Video API"
+    }
+  ]
+}

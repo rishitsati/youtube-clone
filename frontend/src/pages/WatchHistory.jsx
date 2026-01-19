@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoCard from "../components/VideoCard";
-import { getWatchHistory, clearWatchHistory } from "../services/api";
+import VideoCard from "./components/Home/VideoCard";
+import { getWatchHistory, clearWatchHistory } from "@/api/api";
 
 function WatchHistory({ toggleDarkMode, darkMode }) {
   const [history, setHistory] = useState([]);
@@ -43,11 +41,7 @@ function WatchHistory({ toggleDarkMode, darkMode }) {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
         <div
           className={`flex-1 transition-all duration-300 ${
             sidebarOpen ? "ml-64" : "ml-[72px]"

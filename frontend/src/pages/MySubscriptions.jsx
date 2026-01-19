@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoCard from "../components/VideoCard";
-import { getMe } from "../services/api";
+import { getMe } from "@/api/api";
 
-function MySubscriptions({ toggleDarkMode, darkMode }) {
+function MySubscriptions() {
   const [subscriptions, setSubscriptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -34,7 +31,6 @@ function MySubscriptions({ toggleDarkMode, darkMode }) {
   if (loading) {
     return (
       <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-        <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         <div className="flex justify-center items-center h-screen">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
         </div>
@@ -44,11 +40,7 @@ function MySubscriptions({ toggleDarkMode, darkMode }) {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
         <div
           className={`flex-1 transition-all duration-300 ${
             sidebarOpen ? "ml-64" : "ml-[72px]"

@@ -2,11 +2,8 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://youtube-clone-backend-co6r.onrender.com/api",
+  //baseURL: "http://localhost:8000/",
 });
-
-// ============================================
-// AUTH ENDPOINTS
-// ============================================
 
 export const register = (userData) => {
   return api.post("/auth/register", userData);
@@ -39,10 +36,6 @@ export const deleteAccount = (token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
-
-// ============================================
-// VIDEO ENDPOINTS
-// ============================================
 
 export const getAllVideos = (filters = {}) => {
   const params = new URLSearchParams();
@@ -80,7 +73,7 @@ export const likeVideo = (videoId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -90,7 +83,7 @@ export const unlikeVideo = (videoId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -100,7 +93,7 @@ export const dislikeVideo = (videoId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -110,7 +103,7 @@ export const undislikeVideo = (videoId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -140,10 +133,6 @@ export const getVideoSuggestions = (query) => {
   return api.get(`/videos/suggest/${query}`);
 };
 
-// ============================================
-// CHANNEL ENDPOINTS
-// ============================================
-
 export const createChannel = (channelData, token) => {
   return api.post("/channels", channelData, {
     headers: { Authorization: `Bearer ${token}` },
@@ -170,7 +159,7 @@ export const subscribeChannel = (channelId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -195,10 +184,6 @@ export const getUserChannels = (token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
-
-// ============================================
-// COMMENT ENDPOINTS
-// ============================================
 
 export const getVideoComments = (videoId) => {
   return api.get(`/comments/${videoId}`);
@@ -232,7 +217,7 @@ export const likeComment = (commentId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -242,13 +227,9 @@ export const unlikeComment = (commentId, token) => {
     {},
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
-
-// ============================================
-// PLAYLIST ENDPOINTS
-// ============================================
 
 export const createPlaylist = (playlistData, token) => {
   return api.post("/playlists", playlistData, {
@@ -286,7 +267,7 @@ export const addVideoToPlaylist = (playlistId, videoId, token) => {
     { videoId },
     {
       headers: { Authorization: `Bearer ${token}` },
-    }
+    },
   );
 };
 
@@ -295,9 +276,5 @@ export const removeVideoFromPlaylist = (playlistId, videoId, token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
-
-// ============================================
-// UTILITY EXPORTS
-// ============================================
 
 export default api;

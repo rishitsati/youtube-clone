@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoCard from "../components/VideoCard";
-import {
-  getUserPlaylists,
-  createPlaylist,
-  deletePlaylist,
-} from "../services/api";
+import { getUserPlaylists, createPlaylist, deletePlaylist } from "@/api/api";
 
-function Playlists({ toggleDarkMode, darkMode }) {
+function Playlists() {
   const [playlists, setPlaylists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -71,11 +64,7 @@ function Playlists({ toggleDarkMode, darkMode }) {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen">
-      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
         <div
           className={`flex-1 transition-all duration-300 ${
             sidebarOpen ? "ml-64" : "ml-[72px]"
@@ -97,7 +86,9 @@ function Playlists({ toggleDarkMode, darkMode }) {
               className="bg-gray-100 dark:bg-gray-900 p-6 rounded-lg mb-6"
             >
               <div className="mb-4">
-                <label className="block mb-2 font-semibold">Playlist Name</label>
+                <label className="block mb-2 font-semibold">
+                  Playlist Name
+                </label>
                 <input
                   type="text"
                   value={formData.name}
@@ -190,7 +181,7 @@ function Playlists({ toggleDarkMode, darkMode }) {
                     <div className="flex gap-2">
                       <button
                         onClick={() =>
-                          window.location.href = `/playlist/${playlist._id}`
+                          (window.location.href = `/playlist/${playlist._id}`)
                         }
                         className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white text-sm font-semibold transition-colors"
                       >

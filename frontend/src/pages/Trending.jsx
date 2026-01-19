@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoCard from "../components/VideoCard";
-import api from "../services/api";
+import React, { useEffect, useState } from "react";
+import VideoCard from "./components/Home/VideoCard";
+import api from "@/api/api";
 import { FaFire } from "react-icons/fa";
 
 function Trending() {
@@ -12,7 +10,8 @@ function Trending() {
 
   useEffect(() => {
     setLoading(true);
-    api.get("/videos")
+    api
+      .get("/videos")
       .then((res) => {
         // Sort by views to show trending
         const sorted = res.data.sort((a, b) => (b.views || 0) - (a.views || 0));
@@ -27,21 +26,18 @@ function Trending() {
 
   return (
     <div className="bg-yt-dark text-yt-text min-h-screen">
-      <Header />
       <div className="flex pt-14">
-        <Sidebar isOpen={sidebarOpen} />
-
-        <main className={`flex-1 transition-all duration-300 ${
-          sidebarOpen ? "ml-64" : "ml-0"
-        }`}>
+        <main
+          className={`flex-1 transition-all duration-300 ${
+            sidebarOpen ? "ml-64" : "ml-0"
+          }`}
+        >
           {/* Trending Header */}
           <div className="bg-gradient-to-r from-yt-bg to-yt-hover border-b border-yt-hover p-8">
             <div className="flex items-center gap-3 max-w-6xl mx-auto">
               <FaFire className="text-3xl text-yt-red" />
               <div>
-                <h1 className="text-4xl font-bold text-yt-text">
-                  Trending
-                </h1>
+                <h1 className="text-4xl font-bold text-yt-text">Trending</h1>
                 <p className="text-yt-secondary mt-1">
                   Check out the most viewed videos right now
                 </p>

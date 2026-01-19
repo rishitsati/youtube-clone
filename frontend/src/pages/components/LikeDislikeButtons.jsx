@@ -1,14 +1,54 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
-import { likeVideo, unlikeVideo, dislikeVideo, undislikeVideo } from "../services/api";
+import {
+  likeVideo,
+  unlikeVideo,
+  dislikeVideo,
+  undislikeVideo,
+} from "@/api/api";
 
-function LikeDislikeButtons({ videoId, initialLikes = 0, initialDislikes = 0, onUpdate }) {
+function LikeDislikeButtons({
+  videoId,
+  initialLikes = 0,
+  initialDislikes = 0,
+  likedBy = [],
+  dislikedBy = [],
+  currentUserId,
+  onUpdate,
+}) {
   const [likes, setLikes] = useState(initialLikes);
   const [dislikes, setDislikes] = useState(initialDislikes);
-  const [userAction, setUserAction] = useState(null); // 'like', 'dislike', or null
+  const [userAction, setUserAction] = useState(null); 
   const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (currentUserId && likedBy.length > 0) {
+      const hasLiked = likedBy.some(
+        (id) =>
+          (typeof id === "string" && id === currentUserId) ||
+          (typeof id === "object" && id._id === currentUserId) ||
+          id === currentUserId
+      );
+      if (hasLiked) {
+        setUserAction("like");
+      }
+    }
+    if (currentUserId && dislikedBy.length > 0) {
+      const hasDisliked = dislikedBy.some(
+        (id) =>
+          (typeof id === "string" && id === currentUserId) ||
+          (typeof id === "object" && id._id === currentUserId) ||
+          id === currentUserId
+      );
+      if (hasDisliked) {
+        setUserAction("dislike");
+      }
+    }
+    setLikes(initialLikes);
+    setDislikes(initialDislikes);
+  }, [initialLikes, initialDislikes, likedBy, dislikedBy, currentUserId]);
 
   const handleLike = async () => {
     if (!token) {
@@ -23,14 +63,14 @@ function LikeDislikeButtons({ videoId, initialLikes = 0, initialDislikes = 0, on
       if (userAction === "like") {
         // Unlike
         await unlikeVideo(videoId, token);
-        setLikes(likes - 1);
+        setLikes(Math.max(0, likes - 1));
         setUserAction(null);
       } else {
         // Like
         await likeVideo(videoId, token);
         setLikes(likes + 1);
         if (userAction === "dislike") {
-          setDislikes(dislikes - 1);
+          setDislikes(Math.max(0, dislikes - 1));
         }
         setUserAction("like");
       }
@@ -58,14 +98,14 @@ function LikeDislikeButtons({ videoId, initialLikes = 0, initialDislikes = 0, on
       if (userAction === "dislike") {
         // Remove dislike
         await undislikeVideo(videoId, token);
-        setDislikes(dislikes - 1);
+        setDislikes(Math.max(0, dislikes - 1));
         setUserAction(null);
       } else {
         // Dislike
         await dislikeVideo(videoId, token);
         setDislikes(dislikes + 1);
         if (userAction === "like") {
-          setLikes(likes - 1);
+          setLikes(Math.max(0, likes - 1));
         }
         setUserAction("dislike");
       }
@@ -85,27 +125,29 @@ function LikeDislikeButtons({ videoId, initialLikes = 0, initialDislikes = 0, on
       <button
         onClick={handleLike}
         disabled={loading}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${
+        className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors flex-1 sm:flex-none ${
           userAction === "like"
-            ? "bg-red-600 text-white"
-            : "bg-gray-200 dark:bg-gray-800 text-black dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            ? "bg-yt-red text-white hover:bg-red-700"
+            : "bg-yt-bg hover:bg-yt-hover text-yt-text"
         } disabled:opacity-50`}
+        title="Like"
       >
         <FiThumbsUp size={18} />
-        <span>{likes}</span>
+        <span className="hidden sm:inline text-sm">{likes}</span>
       </button>
 
       <button
         onClick={handleDislike}
         disabled={loading}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${
+        className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors flex-1 sm:flex-none ${
           userAction === "dislike"
-            ? "bg-red-600 text-white"
-            : "bg-gray-200 dark:bg-gray-800 text-black dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
+            ? "bg-yt-red text-white hover:bg-red-700"
+            : "bg-yt-bg hover:bg-yt-hover text-yt-text"
         } disabled:opacity-50`}
+        title="Dislike"
       >
         <FiThumbsDown size={18} />
-        <span>{dislikes}</span>
+        <span className="hidden sm:inline text-sm">{dislikes}</span>
       </button>
     </div>
   );

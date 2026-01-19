@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import VideoCard from "../components/VideoCard";
-import api from "../services/api";
+import VideoCard from "./components/Home/VideoCard";
+import api from "@/api/api";
 
 function Profile() {
   const navigate = useNavigate();
@@ -53,7 +51,7 @@ function Profile() {
       await api.post(
         "/playlists",
         { name: playlistName },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       setPlaylistName("");
       setShowPlaylistForm(false);
@@ -72,9 +70,8 @@ function Profile() {
   if (loading) {
     return (
       <div className="bg-white dark:bg-black min-h-screen">
-        <Header />
         <div className="flex pt-14">
-          <Sidebar isOpen={sidebarOpen} />
+
           <div className="flex-1 flex items-center justify-center h-screen">
             <div className="text-gray-600 dark:text-gray-400">Loading...</div>
           </div>
@@ -85,13 +82,13 @@ function Profile() {
 
   return (
     <div className="bg-white dark:bg-black min-h-screen">
-      <Header />
       <div className="flex">
-        <Sidebar isOpen={sidebarOpen} />
 
-        <main className={`flex-1 transition-all duration-300 ${
-          sidebarOpen ? "ml-64" : "ml-[72px]"
-        }`}>
+        <main
+          className={`flex-1 transition-all duration-300 ${
+            sidebarOpen ? "ml-64" : "ml-[72px]"
+          }`}
+        >
           {/* Profile Header */}
           <div className="bg-gradient-to-b from-blue-600 to-transparent p-8 pb-16">
             <div className="flex items-end gap-6">
